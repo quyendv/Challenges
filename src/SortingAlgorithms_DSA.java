@@ -246,8 +246,9 @@ public class SortingAlgorithms_DSA {
      * Ý tưởng: Thực hiện partitioning (phần vùng) mảng, sau đó thực hiện tương tự sắp xếp bên trái và phải của phần tử
      * được phân vùng vừa rồi cho đến khi mảng đc sắp xếp. Bước phân vùng: chọn pivot, sắp xếp mảng sao cho các phần tử < pivot
      * về bên trái và > pivot về bên phải < lưu ý: quickSort3way cải tiến mới là trái <= pivot <= phải >
-     * <p>
-     * Hoare *
+     *
+     *** Hoare * (khó hiểu nhưng nhanh hơn cách cài đặt Lomuto)
+     *
      * Best case: liên tục chia mảng làm đôi -> ~NlogN (pivot luôn là median (trung vị) của đoạn mảng [lo, hi]
      * Worst case: Mảng đã sx || các phần tử trùng nhau -> ~1/2 n^2
      * average case: ~1.39 NlogN

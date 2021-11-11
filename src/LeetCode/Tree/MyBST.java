@@ -7,6 +7,35 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
+
+/*
+    - Cây nhị phân hoàn chỉnh:
+        + số Node ở độ cao h là 2^h
+        + tổng số node là 2^0 + 2^1 + 2^2 + ... 2^h = 2^(h+1) - 1
+    - Cây không hoàn chỉnh thì số Node là 2^h (tức 2^0 + 2^1 + ... 2^ (h - 1) + 1) -> 2^(h+1) - 1
+*/
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode() {
+    }
+
+    TreeNode(int val) {
+        this.val = val;
+        left = null;
+        right = null;
+    }
+
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
 public class MyBST {
     private TreeNode root;
 
@@ -32,6 +61,7 @@ public class MyBST {
         }
         return root;
     }
+
     //---------------------------------------------------------------------------------------------//
     public TreeNode insertNode1(TreeNode root, int val) {
         if (root == null) return new TreeNode(val);
@@ -39,7 +69,6 @@ public class MyBST {
         if (val > root.val) root.right = insertNode1(root.right, val);
         return root;
     }
-
 
 
     //---------------------------------------------------------------------------------------------//
@@ -97,11 +126,11 @@ public class MyBST {
 
             // 1 cách khác cho TH3:
             /*
-            * TreeNode rightSmallest = findRightSmallest(root.right); // có thể dùng while trực tiếp luôn thay vì tạo thêm hàm
-            * rightSmallest.left = root.left;
-            * return root.right;
-            * --> tuy nhiên cách này chắc chắn sẽ làm dài cây ra -> tốt nhất k nên dùng
-            */
+             * TreeNode rightSmallest = findRightSmallest(root.right); // có thể dùng while trực tiếp luôn thay vì tạo thêm hàm
+             * rightSmallest.left = root.left;
+             * return root.right;
+             * --> tuy nhiên cách này chắc chắn sẽ làm dài cây ra -> tốt nhất k nên dùng
+             */
         }
         return root;
     }
@@ -164,15 +193,12 @@ public class MyBST {
     //---------------------------------------------------------------------------------------------//
 
 
-
-
-
     /*
-    * 700.Search in a BST
-    * https://leetcode.com/problems/search-in-a-binary-search-tree/
-    * - Recursion
-    * - Iteration
-    * */
+     * 700.Search in a BST
+     * https://leetcode.com/problems/search-in-a-binary-search-tree/
+     * - Recursion
+     * - Iteration
+     * */
     public TreeNode searchBST(TreeNode root, int val) {
         if (root == null) return null;
         if (val < root.val) return searchBST(root.left, val);
@@ -180,12 +206,14 @@ public class MyBST {
         // else val == root.val
         return root;
     }
+
     //---------------------------------------------------------------------------------------------//
     public TreeNode searchBST1(TreeNode root, int val) {
-        while (root != null && root.val != val) {
-            root = val < root.val ? root.left : root.right;
+        TreeNode x = root;
+        while (x != null && x.val != val) {
+            x = val < x.val ? x.left : x.right;
         }
-        return root; // null or val
+        return x; // null or val
     }
 
 
@@ -196,11 +224,11 @@ public class MyBST {
 
 
     /*
-    * Duyệt BST: Pre-order (N-L-R), In-order (L-N-R), Post-order (L-R-N)
-    *
-    * 144. Binary Tree Preorder Traversal
-    * https://leetcode.com/problems/binary-tree-preorder-traversal/discuss/45468/3-Different-Solutions
-    */
+     * Duyệt BST: Pre-order (N-L-R), In-order (L-N-R), Post-order (L-R-N)
+     *
+     * 144. Binary Tree Preorder Traversal
+     * https://leetcode.com/problems/binary-tree-preorder-traversal/discuss/45468/3-Different-Solutions
+     */
 
 
     // Solution 1: recursion
@@ -208,13 +236,17 @@ public class MyBST {
     // -> giải pháp: tạo bên ngoài || dùng thêm hàm helper || overloading
 
     List<Integer> ans = new ArrayList<>();  // tuy nhiên cách dùng biến cục bộ như vậy là k nên
+
     public List<Integer> preorderTraversal(TreeNode root) {
         if (root == null) return ans;
         ans.add(root.val);
-        /*ans = */preorderTraversal(root.left);  // có thể gán, nhưng nó k có nghĩa vì ta đã thay đổi trực tiếp vào ans
-        /*ans = */preorderTraversal(root.right); // nên dùng hàm helper kiểu void
+        /*ans = */
+        preorderTraversal(root.left);  // có thể gán, nhưng nó k có nghĩa vì ta đã thay đổi trực tiếp vào ans
+        /*ans = */
+        preorderTraversal(root.right); // nên dùng hàm helper kiểu void
         return ans;
     }
+
     //---------------------------------------------------------------------------------------------//
     public List<Integer> preorderTraversal1(TreeNode root) {
         List<Integer> res = new ArrayList<>();
@@ -228,13 +260,15 @@ public class MyBST {
         preHelper(root.left, res);
         preHelper(root.right, res);
     }
+
     //---------------------------------------------------------------------------------------------//
-        // Dùng overloading, giống helper nhưng đc phép đặt tên giống
+    // Dùng overloading, giống helper nhưng đc phép đặt tên giống
     public List<Integer> preorderTraversal_1(TreeNode root) {
         List<Integer> res = new ArrayList<>();
         preorderTraversal_1(root, res);
         return res;
     }
+
     public void preorderTraversal_1(TreeNode root, List<Integer> res) {
         if (root == null) return;
         res.add(root.val);
@@ -268,8 +302,14 @@ public class MyBST {
         InOrder & PostOrder tương tự, chỉ đổi vị trí đi xíu: dùng đệ quy dễ hiểu nhất -> hạn chế dùng stack
         94. Binary Tree Inorder Traversal
         145. Binary Tree Postorder Traversal
+        102. Binary Tree Level Order Traversal
+        https://leetcode.com/problems/binary-tree-level-order-traversal/discuss/33450/Java-solution-with-a-queue-used
+        https://leetcode.com/problems/binary-tree-level-order-traversal/discuss/33445/Java-Solution-using-DFS
+        107. Binary Tree Level Order Traversal II
 
+        - Tổng hợp:
         https://leetcode.com/problems/binary-tree-postorder-traversal/discuss/45551/Preorder-Inorder-and-Postorder-Iteratively-Summarization
+
         - BT luyện tập:
         + 105. Construct Binary Tree from Preorder and Inorder Traversal
         https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/

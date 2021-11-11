@@ -37,6 +37,30 @@ public class _234_Palindrome_Linked_List {
             fast = fast.next.next;
         }
 
+        /*
+        - Lưu ý đặc biệt điều kiện vòng lặp này sẽ đưa về kết quả khác cách trên
+        + nếu 1 2 3 4 null sẽ trả về slow, fast là 2 3 (tức là đưa slow về nửa trước nếu Nodes chẵn)
+        + nếu 1 2 3 4 5 null sẽ trả về 3 5 (tức là đưa slow về giữa như cách trên)
+        => quan trọng bài này là ta cần slow, nên tùy theo đề bài khác nhau mà ở TH 1 ta cần 2 hay 3
+
+            Node slow = head, fast = head;  // fast này
+            while (fast.next != null && fast.next.next != null) {   // đi với điều kiện này sẽ tối ưu
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+            return slow;
+
+                *** hoặc bên dưới, kết quả tương tự nhau ***
+            Node slow = head, fast = head.next;  // fast này
+            while (fast != null && fast.next != null) {   // đi với điều kiện này
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+
+         ** Đặc biệt điều kiện trong vòng while trên trong bài cycle LL sẽ nhanh hơn vì nếu list k cycle sẽ dừng nhanh hơn
+        */
+
     /* Giải thích: số Node fast đi đc gấp 2 so với slow (Node head k tính là đi được) và số Node fast đi qua luôn chẵn (gấp 2 slow) nên:
        + Nếu ll có n chẵn: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> null thì n-1 (bỏ Node head) là lẻ => fast chắc chắn kết thúc ở null
          -> tự nhẩm để CM, fast = null và slow.val = 4 (kết Node giữa) -> reverse từ slow
