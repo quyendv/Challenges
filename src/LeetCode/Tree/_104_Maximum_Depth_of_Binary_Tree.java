@@ -3,6 +3,27 @@
 package LeetCode.Tree;
 
 public class _104_Maximum_Depth_of_Binary_Tree {
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+            left = null;
+            right = null;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
     public int maxDepth(TreeNode root) {
         if (root == null) return 0;
         int leftHeight = maxDepth(root.left);

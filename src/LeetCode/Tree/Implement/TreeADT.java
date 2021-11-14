@@ -1,4 +1,4 @@
-package LeetCode.Tree;
+package LeetCode.Tree.Implement;
 
 import java.util.Iterator;
 

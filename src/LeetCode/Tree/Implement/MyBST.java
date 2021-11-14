@@ -1,6 +1,6 @@
 // video: https://www.youtube.com/watch?v=TlEqqkszRtQ&t=2406s
 
-package LeetCode.Tree;
+package LeetCode.Tree.Implement;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -9,10 +9,15 @@ import java.util.Stack;
 
 
 /*
-    - Cây nhị phân hoàn chỉnh:
-        + số Node ở độ cao h là 2^h
-        + tổng số node là 2^0 + 2^1 + 2^2 + ... 2^h = 2^(h+1) - 1
-    - Cây không hoàn chỉnh thì số Node là 2^h (tức 2^0 + 2^1 + ... 2^ (h - 1) + 1) -> 2^(h+1) - 1
+ * Cây tìm kiếm nhị phân (BST) là một cấu trúc dữ liệu cây nhị phân dựa trên nút có các thuộc tính sau:
+ * + Cây con bên trái của một nút chỉ chứa các nút có khóa nhỏ hơn khóa của nút đó
+ * +  Cây con bên phải của một nút chỉ chứa các nút có khóa lớn hơn khóa của nút đó
+ * + Cả cây con bên trái và bên phải cũng phải là cây tìm kiếm nhị phân
+
+ * Cây nhị phân hoàn chỉnh:
+ *  + số Node ở độ cao h là 2^h
+ *  + tổng số node là 2^0 + 2^1 + 2^2 + ... 2^h = 2^(h+1) - 1
+ * Cây không hoàn chỉnh thì số Node là 2^h (tức 2^0 + 2^1 + ... 2^ (h - 1) + 1) -> 2^(h+1) - 1
 */
 
 class TreeNode {

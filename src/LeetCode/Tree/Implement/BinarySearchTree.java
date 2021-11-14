@@ -1,6 +1,6 @@
 // https://www.youtube.com/watch?v=GhKJcr1Fri8&list=PLoaAbmGPgTSNMAzkKBHkh2mLuBk54II5L&index=28
 
-package LeetCode.Tree;
+package LeetCode.Tree.Implement;
 
 import java.util.*;
 
@@ -24,6 +24,17 @@ class Node<T extends Comparable<T>> {
     }
 }
 
+/*
+ * Cây tìm kiếm nhị phân (BST) là một cấu trúc dữ liệu cây nhị phân dựa trên nút có các thuộc tính sau:
+ * + Cây con bên trái của một nút chỉ chứa các nút có khóa nhỏ hơn khóa của nút đó
+ * +  Cây con bên phải của một nút chỉ chứa các nút có khóa lớn hơn khóa của nút đó
+ * + Cả cây con bên trái và bên phải cũng phải là cây tìm kiếm nhị phân
+
+ * Cây nhị phân hoàn chỉnh:
+ *  + số Node ở độ cao h là 2^h
+ *  + tổng số node là 2^0 + 2^1 + 2^2 + ... 2^h = 2^(h+1) - 1
+ * Cây không hoàn chỉnh thì số Node là 2^h (tức 2^0 + 2^1 + ... 2^ (h - 1) + 1) -> 2^(h+1) - 1
+ */
 public class BinarySearchTree<T extends Comparable<T>> implements TreeADT<T> {
     private Node<T> root;
     private int nodeCount = 0;
@@ -95,7 +106,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements TreeADT<T> {
             case POST_ORDER:
                 return postOrderList();
             case LEVEL_ORDER:
-                // return levelOrderList();
+                // return levelOrderList(); // xem bên MyBST
             default:
                 return null;
         }
@@ -188,8 +199,12 @@ public class BinarySearchTree<T extends Comparable<T>> implements TreeADT<T> {
         return true;
     }
 
+    /**
+     * Tùy theo đề bài. chiều cao có thể là tổng số Node theo đường dài nhất từ root tới lá
+     * Có bài cho là số cành từ root tới Node lá xa nhất --> thấy đúng hơn vì root có h = 0
+     */
     private int height(Node<T> node) {
-        if (node == null) return 0;
+        if (node == null) return 0; // chỉ cần sửa return -1 cho TH 2
         return 1 + Math.max(height(node.left), height(node.right));
     }
 
