@@ -1,3 +1,12 @@
+/*
+        102. Binary Tree Level Order Traversal
+        https://leetcode.com/problems/binary-tree-level-order-traversal/discuss/33450/Java-solution-with-a-queue-used
+        https://leetcode.com/problems/binary-tree-level-order-traversal/discuss/33445/Java-Solution-using-DFS
+
+        GFG: https://www.geeksforgeeks.org/level-order-tree-traversal/
+        Các loại Traversal khác: https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
+ */
+
 package LeetCode.Tree;
 
 import java.util.LinkedList;

@@ -56,7 +56,7 @@ public class BST<Key extends Comparable<Key>, Value> {
         if (cmp < 0) x.left = put(x.left, key, val);
         else if (cmp > 0) x.right = put(x.right, key, val);
         else x.value = val;
-        x.size = 1 + size(x.left) + size(x.right);
+        x.size = 1 + size(x.left) + size(x.right); // có thể đặt vào hàm updateSize để dùng nhiều chỗ
         return x;
     }
 

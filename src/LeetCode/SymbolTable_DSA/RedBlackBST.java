@@ -18,6 +18,7 @@ import java.util.NoSuchElementException;
  * - Là 1 cấu trúc dữ liệu cho phép ta biểu diễn 1 cây 2-3 bằng 1 BST. Thêm thuộc tính color cho mỗi Node, isRed tức nó
  * thuộc 1 Node 3 (node cha link tới nó bằng link đỏ).
  * - Tính chất:
+ *     + Mỗi Node hoặc là đỏ hoặc là đen.
  *     + Root là đen và, Node null là đen, cả 2 con của mọi Node đỏ là đen (lưu ý quan trọng, rất hay bị quên)
  *     + Không có nút nào có 2 link đỏ(vì link đỏ là link nội bộ của Node 3) và các nút 3 đều có link ngoài để nối với
  * nút khác trên cây.
@@ -117,12 +118,13 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         else if (cmp > 0) x.right = put(x.right, key, val);
         else x.value = val;
 
-        // fix-up any right-leaning links
+        // fix-up any right-leaning links ==> nên gom toàn bộ 4 dòng dưới vào 1 hàm balance cho dễ hiểu và gọn
         if (isRed(x.right) && !isRed(x.left)) x = rotateLeft(x);
         if (isRed(x.left) && isRed(x.left.left)) x = rotateRight(x);
         if (isRed(x.left) && isRed(x.right)) flipColors(x);
 
-        // set lại size của x (mới)
+        // set lại size của x (mới) - có thể đặt hàm updateSize
+        // Khác với AVL, việc set lại size k nên kèm vào trong rotate!!!. Vì nhiều khi k rotate nhưng vẫn phải set lại size
         x.size = 1 + size(x.left) + size(x.right);
 
         return x;
