@@ -9,6 +9,9 @@ import java.util.Stack;
 
 
 /*
+ * Chiều cao của cây là độ sâu của Node xa nhất
+ * Depth(Node x) = số lượng ancestors của x
+
  * Cây tìm kiếm nhị phân (BST) là một cấu trúc dữ liệu cây nhị phân dựa trên nút có các thuộc tính sau:
  * + Cây con bên trái của một nút chỉ chứa các nút có khóa nhỏ hơn khóa của nút đó
  * +  Cây con bên phải của một nút chỉ chứa các nút có khóa lớn hơn khóa của nút đó
@@ -306,14 +309,18 @@ public class MyBST {
     /*
         InOrder & PostOrder tương tự, chỉ đổi vị trí đi xíu: dùng đệ quy dễ hiểu nhất -> hạn chế dùng stack
         94. Binary Tree Inorder Traversal
-        145. Binary Tree Postorder Traversal
+        145. Binary Tree Postorder Traversal: lưu ý việc addFirst của LL hay add(0, ...) của List đều giống nhau, tuy nhiên
+        với ArrayList tốn O(n) nhưng LL chỉ O(1) -> chỉ nên dùng vs LL.
+
         102. Binary Tree Level Order Traversal
         https://leetcode.com/problems/binary-tree-level-order-traversal/discuss/33450/Java-solution-with-a-queue-used
         https://leetcode.com/problems/binary-tree-level-order-traversal/discuss/33445/Java-Solution-using-DFS
-        107. Binary Tree Level Order Traversal II
+        107. Binary Tree Level Order Traversal II:...
 
         - Tổng hợp:
         https://leetcode.com/problems/binary-tree-postorder-traversal/discuss/45551/Preorder-Inorder-and-Postorder-Iteratively-Summarization
+        <Xem ở link và phần comment của xiaoyuz666 trong link(chi tiết và có vẻ hay hơn vì chỉ add khác null)
+
 
         - BT luyện tập:
         + 105. Construct Binary Tree from Preorder and Inorder Traversal

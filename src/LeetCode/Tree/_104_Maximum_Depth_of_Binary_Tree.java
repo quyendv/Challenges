@@ -24,6 +24,10 @@ public class _104_Maximum_Depth_of_Binary_Tree {
         }
     }
 
+    /**
+     * Là độ sâu của Node xa nhất
+     * Depth(Node x) = số lượng ancestors của x
+     */
     public int maxDepth(TreeNode root) {
         if (root == null) return 0;
         int leftHeight = maxDepth(root.left);
