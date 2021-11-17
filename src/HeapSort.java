@@ -5,7 +5,7 @@ public class HeapSort {
     public static void sort(Comparable[] a) {
         // B1: tạo max heap từ mảng ban đầu:
         // sink các phần tử từ a/2 đến 1 (tính từ 1)
-        // Lưu ý độ phức tạp chỉ O(n)
+        // Lưu ý độ phức tạp chỉ O(n)?? --> sai vì sink n/2 Node mà mỗi lần sink tốn từ 1 -> logN ==> chỉ O(n) trong best-case
         int n = a.length;
         for (int k = n / 2; k >= 1; k--) {
             sink(a, k, n);
