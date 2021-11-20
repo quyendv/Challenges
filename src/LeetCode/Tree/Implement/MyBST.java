@@ -14,14 +14,14 @@ import java.util.Stack;
 
  * Cây tìm kiếm nhị phân (BST) là một cấu trúc dữ liệu cây nhị phân dựa trên nút có các thuộc tính sau:
  * + Cây con bên trái của một nút chỉ chứa các nút có khóa nhỏ hơn khóa của nút đó
- * +  Cây con bên phải của một nút chỉ chứa các nút có khóa lớn hơn khóa của nút đó
+ * + Cây con bên phải của một nút chỉ chứa các nút có khóa lớn hơn khóa của nút đó
  * + Cả cây con bên trái và bên phải cũng phải là cây tìm kiếm nhị phân
 
  * Cây nhị phân hoàn chỉnh:
  *  + số Node ở độ cao h là 2^h
  *  + tổng số node là 2^0 + 2^1 + 2^2 + ... 2^h = 2^(h+1) - 1
  * Cây không hoàn chỉnh thì số Node là 2^h (tức 2^0 + 2^1 + ... 2^ (h - 1) + 1) -> 2^(h+1) - 1
-*/
+ */
 
 class TreeNode {
     int val;
@@ -319,7 +319,7 @@ public class MyBST {
 
         - Tổng hợp:
         https://leetcode.com/problems/binary-tree-postorder-traversal/discuss/45551/Preorder-Inorder-and-Postorder-Iteratively-Summarization
-        <Xem ở link và phần comment của xiaoyuz666 trong link(chi tiết và có vẻ hay hơn vì chỉ add khác null)
+        <Xem ở link và phần comment của xiaoyuz666 trong link(chi tiết và có vẻ hay hơn vì chỉ add khác null>
 
 
         - BT luyện tập:
@@ -334,4 +334,120 @@ public class MyBST {
         List<Integer> list = new LinkedList<>();
         l.addFirst(1);
     }
+    /*
+    *** Pre Order Traverse:
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode p = root;
+        while(!stack.isEmpty() || p != null) {
+            if(p != null) {
+                stack.push(p);
+                result.add(p.val);  // Add before going to children
+                p = p.left;
+            } else {
+                TreeNode node = stack.pop();
+                p = node.right;
+            }
+        }
+        return result;
+    }
+
+    *** In Order Traverse
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode p = root;
+        while(!stack.isEmpty() || p != null) {
+            if(p != null) {
+                stack.push(p);
+                p = p.left;
+            } else {
+                TreeNode node = stack.pop();
+                result.add(node.val);  // Add after all left children
+                p = node.right;
+            }
+        }
+        return result;
+    }
+
+
+    *** Post Order Traverse
+        public List<Integer> postorderTraversal(TreeNode root) {
+            LinkedList<Integer> result = new LinkedList<>();
+            Deque<TreeNode> stack = new ArrayDeque<>();
+            TreeNode p = root;
+            while(!stack.isEmpty() || p != null) {
+                if(p != null) {
+                    stack.push(p);
+                    result.addFirst(p.val);  // Reverse the process of preorder
+                    p = p.right;             // Reverse the process of preorder
+                } else {
+                    TreeNode node = stack.pop();
+                    p = node.left;           // Reverse the process of preorder
+                }
+            }
+            return result;
+        }
+
+
+        ******************************************************************************************************
+    //inorder
+        public List<Integer> inorderTraversal(TreeNode root) {
+            List<Integer> res=new ArrayList<>();
+            if (root==null) return res;
+
+            Stack<TreeNode> stack=new Stack<>();
+            TreeNode curr=root;
+
+            while(curr!=null || !stack.isEmpty()){
+                while (curr!=null){
+                    stack.push(curr);
+                    curr=curr.left;
+                }
+                curr=stack.pop();
+                res.add(curr.val);
+                curr=curr.right;
+            }
+            return res;
+        }
+
+    //preorder
+        public List<Integer> preorderTraversal(TreeNode root) {
+            List<Integer> list = new ArrayList<>();
+            if(root == null) return list;
+            Stack<TreeNode> stack = new Stack<>();
+            stack.push(root);
+            while(!stack.isEmpty()) {
+                TreeNode current = stack.pop();
+                list.add(current.val);
+                if(current.right!=null) {
+                   stack.push(current.right);
+                }
+                if(current.left!=null) {
+                  stack.push(current.left);
+                }
+            }
+            return list;
+        }
+
+    //postorder
+          public List<Integer> postorderTraversal(TreeNode root) {
+            List<Integer> list = new ArrayList<>();     // nên dùng ll khi addFirst
+            if(root == null) return list;
+            Stack<TreeNode> stack = new Stack<>();
+            stack.push(root);
+            while(!stack.isEmpty()) {
+                TreeNode curr = stack.pop();
+                list.add(0,curr.val);                   // nên dùng ll khi addFirst
+                if(curr.left!=null) {
+                  stack.push(curr.left);
+                }
+                if(curr.right!=null) {
+                   stack.push(curr.right);
+                }
+            }
+            return list;
+        }
+     */
 }

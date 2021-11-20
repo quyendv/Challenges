@@ -12,7 +12,7 @@ public class _6_Zig_Zag_Conversion {
     public String convert(String s, int numRows) {
         int n = s.length();
 
-        if (numRows <= 1 || n < numRows) {   // 2TH quan trọng giảm tgian chạy từ 12ms -> 9ms
+        if (numRows <= 1 || n <= numRows) {   // 2TH quan trọng giảm tgian chạy từ 12ms -> 9ms
             return s;
         }
 
@@ -52,6 +52,15 @@ public class _6_Zig_Zag_Conversion {
         và solution mẫu nhanh nhất ở:
         https://leetcode.com/submissions/detail/571058259/
         ~ 2ms
+
+        n = numRows
+            Δ=2n-2    1                           2n-1                         4n-3
+            Δ=        2                     2n-2  2n                    4n-4   4n-2
+            Δ=        3               2n-3        2n+1              4n-5       .
+            Δ=        .           .               .               .            .
+            Δ=        .       n+2                 .           3n               .
+            Δ=        n-1 n+1                     3n-3    3n-1                 5n-5
+            Δ=2n-2    n                           3n-2                         5n-4
     */
     public static String convert1(String s, int numRows) {
         int n = s.length();
@@ -75,6 +84,44 @@ public class _6_Zig_Zag_Conversion {
         }
 
         return ans.toString();
+    }
+
+
+    public String recode(String s, int numRows) {
+        if (numRows <= 1 || s.length() <= numRows) return s;
+
+        char[] chars = s.toCharArray();
+        int n = chars.length, index = 0;
+        StringBuilder[] res = new StringBuilder[numRows];
+        for (int i = 0; i < numRows; i++) res[i] = new StringBuilder();
+
+        while (index < n) {
+            for (int row = 0; row < numRows && index < n; row++) {
+                res[row].append(chars[index++]);
+            }
+            for (int row = numRows - 2; row > 0 && index < n; row--) {
+                res[row].append(chars[index++]);
+            }
+        }
+
+        for (int i = 1; i < numRows; i++) res[0].append(res[i]);
+        return res[0].toString();
+
+//        if (numRows <= 1 || s.length() <= numRows) return s;
+//
+//        int n = s.length();
+//        char[] chars = s.toCharArray();
+//        int interval = 2 * numRows - 2;
+//        StringBuilder res = new StringBuilder();
+//
+//        for (int row = 0; row < numRows; row++) {
+//            int step = interval - 2 * row;
+//            for (int i = row; i < n; i += interval) {
+//                res.append(chars[i]);
+//                if (step > 0 && step < interval && i + step < n) res.append(chars[i + step]);
+//            }
+//        }
+//        return res.toString();
     }
 
     public static void main(String[] args) {

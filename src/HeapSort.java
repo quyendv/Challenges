@@ -1,5 +1,16 @@
 import java.util.Arrays;
-
+/*
+** Heap Sort: Thuật toán duy nhất được học vừa inplace, vừa đảm bảo O(n.logn) trong mọi TH
+- Ý tưởng: Biến đổi mảng thành 1 MaxBinaryHeap, sau đó tách từng max ra khỏi Heap
+- Complexity:
+	+ Space: O(1) -> k cần thêm bộ nhớ -> inplace
+	+ Time: Đưa mảng về binary heap (sink lần lượt các Node cha, mỗi lần tối đa LogN --> O(n.logn) nhưng
+	tốt nhất có thể đạt O(n) khi sink O(1)). Sau đó xóa từng max khỏi heap (xóa khỏi heap chứ k xóa bằng null): swap last node với
+	root + sink(new root): O(n.logn)
+	==> O(N.logN)
+- Stable: Not stable
+- Inplace: true.
+ */
 public class HeapSort {
     // Lưu ý ta coi heap từ 1 đến size, các bước swap với less tự giảm index đi 1
     public static void sort(Comparable[] a) {

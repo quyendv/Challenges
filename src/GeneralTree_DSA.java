@@ -1,10 +1,14 @@
-// BT thầy Cát
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+/*
+ * Tree: là cấu trúc dữ liệu gồm các nút (Node) được liên kết với nhau theo quan hệ cha - con.
+   Mỗi Node có thể có nhiều Node con hoặc k có Node con nào
+ * Chiều cao của cây là độ sâu của Node xa nhất
+ * Depth(Node x) = số lượng ancestors của x
+ */
 public class GeneralTree_DSA {
     Node root;
 
@@ -72,8 +76,28 @@ public class GeneralTree_DSA {
         Node target = find(root, key);
         if (target == null) return; // !contains(key)
 
-        if (target.parent.children.size() == 1) target.parent.children = null;
-        else target.parent.children.remove(target);
+        // sai: chưa tính TH bên dưới còn Node
+        // if (target.parent.children.size() == 1) target.parent.children = null;
+        // else target.parent.children.remove(target);
+
+        // delete đúng:
+        if (target.children == null) { // Node lá: k có children
+            if (target.parent.children.size() == 1) target.parent.children = null; // nếu parent chỉ có target là con -> null
+            else target.parent.children.remove(target);
+        } else {
+            // target còn children (k thể xóa luôn được) -> dịch child đầu tiên lên (chỉ gán data và child rồi xét target.children
+            // chứ nếu tìm index của target trong list children của target.parent rồi thay child(0) lên mất tgian hơn
+
+            // gán data:
+            target.data = target.children.get(0).data;
+            // gán children:
+            if (target.children.size() == 1) target.children = target.children.get(0).children;
+            else {
+                List<Node> temp = target.children.get(0).children;
+                target.children.remove(0);
+                target.children.addAll(0, temp);
+            }
+        }
     }
 
     static boolean isBinaryTree(Node root) {
@@ -97,6 +121,10 @@ public class GeneralTree_DSA {
         return false;
     }
 
+    /**
+     * Là độ sâu của Node xa nhất
+     * Depth(Node x) = số lượng ancestors của x
+     */
     static int height(Node root) {
         if (root == null) return -1;            // Node null height = -1
         if (root.children == null) return 0;    // Node leaf height = 0;

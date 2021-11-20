@@ -25,12 +25,14 @@ class Node<T extends Comparable<T>> {
 }
 
 /*
+ - Xem định nghĩa thêm ở folder Tree
+
  * Chiều cao của cây là độ sâu của Node xa nhất
  * Depth(Node x) = số lượng ancestors của x
 
  * Cây tìm kiếm nhị phân (BST) là một cấu trúc dữ liệu cây nhị phân dựa trên nút có các thuộc tính sau:
  * + Cây con bên trái của một nút chỉ chứa các nút có khóa nhỏ hơn khóa của nút đó
- * +  Cây con bên phải của một nút chỉ chứa các nút có khóa lớn hơn khóa của nút đó
+ * + Cây con bên phải của một nút chỉ chứa các nút có khóa lớn hơn khóa của nút đó
  * + Cả cây con bên trái và bên phải cũng phải là cây tìm kiếm nhị phân
 
  * Cây nhị phân hoàn chỉnh:

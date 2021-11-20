@@ -30,13 +30,18 @@ public class Tree_LevelOrderTraversal {
         Queue<Node> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                Node first = queue.poll();
-                if (first.left != null) queue.offer(first.left);
-                if (first.right != null) queue.offer(first.right);
-                System.out.print(first.data + " ");
-            }
+            // int size = queue.size();
+            // for (int i = 0; i < size; i++) {
+            //     Node first = queue.poll();
+            //     if (first.left != null) queue.offer(first.left);
+            //     if (first.right != null) queue.offer(first.right);
+            //     System.out.print(first.data + " ");
+            // }
+
+            Node first = queue.poll();
+            if (first.left != null) queue.offer(first.left);
+            if (first.right != null) queue.offer(first.right);
+            System.out.print(first.data + " ");
         }
     }
 }
