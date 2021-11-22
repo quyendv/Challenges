@@ -287,6 +287,18 @@ public class SortingAlgorithms_DSA {
 
         /**
          * Tìm phần tử nhỏ thứ k (0 = min, a.length - 1 = max, ...)
+         * Thời gian chạy của quick select là tuyến tính trong trường hợp trung bình. Ta sẽ không chứng minh đầy đủ.
+         * Nó phức tạp hơn quicksort. Nhưng bằng trực quan, ta có thể thấy mỗi lần phân hoạch có thể chia mảng ra
+         * khoảng làm đôi. Như vậy lần đầu phân hoạch chạy hết đúng N phép so sánh, lần hai chạy khoảng N/2 phép so sánh
+         * và chia tiếp làm đôi, lần ba chạy phân hoạch trên khoảng ¼ mảng và cần khoảng N/4 phép so sánh…..cứ như vậy,
+         * tổng loại được khoảng xấp xỉ 2N phép so sánh. Nghĩa là tuyến tính.
+         *
+         * Thực ra nó không chia mảng chính xác làm hai nửa bằng nhau, mà chỉ trung bình là chia đôi.
+         * Nên ta cần một phân tích đầy đủ như đã làm với Quicksort.
+         * Tóm lại là quickselect có thời gian chạy trung bình là tuyến tính.
+         * Nhưng nó sẽ là bậc hai ở trường hợp xấu nhất. Một lần nữa, với bước tráo ngẫu nhiên thì xác suất xảy ra
+         * trường hợp xấu nhất thấp hơn cả xác suất ta bị sét đánh. Do đó, nó là thuật toán được đảm bảo là thuật
+         * toán tốt bằng xác suất.
          */
         public Comparable select(Comparable[] a, int k) {
             StdRandom.shuffle(a);

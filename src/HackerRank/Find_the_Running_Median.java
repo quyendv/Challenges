@@ -6,6 +6,10 @@
     -> ta sẽ chia làm 2 mảng: 1 nửa (maxHeap) là các số <= số trung vị và 1 nửa còn lại (minHeap) lớn hơn số trung vị và ĐIỀU KIÊN
        là Max của maxHeap phải <= Min của minHeap.
     Mỗi lần duyệt ưu tiên add vào s1 trước, số trung vị sẽ là Max của maxHeap (nếu lẻ) và (Max maxHeap + Min minHeap) / 2.0 (nếu chẵn)
+
+    Cách 2: https://www.youtube.com/watch?v=VmogG01IjYc&t=286s  (solution of HackerRank)
+    ý tưởng tương tự: add các số nhỏ hơn max của MaxHeap vào và lớn hơn thì vào MinHeap.
+    Sau đó nếu MaxHeap.size - minHeap.size >= 2 thì minHeap.offer(maxHeap.poll())
 */
 
 package HackerRank;

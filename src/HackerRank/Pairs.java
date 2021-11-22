@@ -2,9 +2,7 @@
 
 package HackerRank;
 
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class Pairs {
     public static void main(String[] args) {
@@ -37,11 +35,11 @@ public class Pairs {
             s.add(a[i]);
         }
 
-        /*
-        Set<Integer> s = new HashSet<>() {
-            for (int i : a) add(i);
-        }
-         */
+        // Set<Integer> s = new HashSet<>() {{
+        //     for (int i : a) add(i);
+        // }};
+
+        // Set<Integer> s = new HashSet<>(Arrays.asList(a));
 
         for (int i = 0; i < n; i++) {
             if (s.contains(a[i] + k)) count++;
