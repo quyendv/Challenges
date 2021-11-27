@@ -16,7 +16,7 @@ public class HeapSort {
     public static void sort(Comparable[] a) {
         // B1: tạo max heap từ mảng ban đầu:
         // sink các phần tử từ a/2 đến 1 (tính từ 1)
-        // Lưu ý độ phức tạp tối đa O(n) trong worstCase: các parent chỉ 1 + 2 + ... + h -> tuyến tính O(n)
+        // số Node cha là N/2 (1 -> N/2) mà mỗi Node cha sẽ sink (1->logN) ==> tốt nhất là O(n) && xấu nhất là O(NlogN)
         int n = a.length;
         for (int k = n / 2; k >= 1; k--) {
             sink(a, k, n);

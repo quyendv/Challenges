@@ -22,13 +22,14 @@ public class SortingAlgorithms_DSA {
      * Worst-case: O(n^2)
      * <p>
      * Good: Sắp xếp xuôi, các giá trị bằng nhau
-     * Bad: sắp xếp ngược
+     * Bad: sắp xếp ngược (thực ra chỉ cần phần tử nhỏ nhất ở cuối cùng đã là worstCase rồi)
      * <p>
      * Lưu ý: TH có 1 (hoặc 1 vài) phần tử sai vị trí, chưa thể đánh giá được vì:
      * + Mỗi lần duyệt sẽ đưa phần tử lớn nhất về cuối mảng
      * + Nếu phần tử sai vị trí đó lớn nhất -> 1 lần duyệt là đưa đc về đúng vị trí (và thêm 1 lần check isSorted để kết thúc)
      * + Nếu phần tử sai vị trí đó lớn thứ 2 -> 2 lần duyệt (và thêm 1 lần check)
      * ... -> nếu nhỏ nhất thì tốn n lần duyệt như vậy --> không đánh giá được Good/Bad
+     * ==> phần tử càng nhỏ mà càng xa vị trí của nó thì càng xấu (bad)
      */
 
     public static void BubbleSort(int[] a) { // optimized: best-case: O(n), worst-case O(n^2)
@@ -250,8 +251,11 @@ public class SortingAlgorithms_DSA {
      *** Hoare * (khó hiểu nhưng nhanh hơn cách cài đặt Lomuto)
      *
      * Best case: liên tục chia mảng làm đôi -> ~NlogN (pivot luôn là median (trung vị) của đoạn mảng [lo, hi]
-     * Worst case: Mảng đã sx -> ~1/2 n^2. TH key trùng nhau chỉ tốn công swap nhưng phân hoạch đều --> k phải worstCase như đã sx
+     * Worst case: Mảng đã sx xuôi or ngược -> ~1/2 n^2. TH key trùng nhau chỉ tốn công swap nhưng phân hoạch đều --> k phải worstCase như đã sx
      * average case: ~1.39 NlogN
+     *
+     * TH nếu mảng gần như sx, chỉ có 1 vài phần tử sai vị trí thì vẫn là TH xấu (bad not worstCase): vì giả sử sai vị
+     * trí đó là median của đoạn mảng sx (tức phân vùng tốt) thì cũng chỉ có vài TH tốt còn lại đều là TH xấu nhất ==> bad
      */
     public static class QuickSort {
         public int partition(Comparable[] a, int lo, int hi) {
