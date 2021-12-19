@@ -13,7 +13,7 @@
 
 package LeetCode;
 
-public class Longest_Palindrome_Substring_5_Medium {
+public class Longest_Palindrome_Substring_5_MEDIUM {
     public String longestPalindrome(String s) {
         if (s == null || s.length() < 2) return s;
 

@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Longest_Substring_Without_Repeating_Characters_3 {
+public class Longest_Substring_Without_Repeating_Characters_3_MEDIUM {
     // Solution 1: from GFG, k nên vì k thấy hiệu quả lắm, mặc dù ý tưởng giống cách dưới
     public static int longestUniqueSubstr(String str) {
         String test = "";

@@ -2,14 +2,14 @@
 // Video: https://www.youtube.com/watch?v=LPFhl65R7ww
 /* ********************************************************************
  * Giải thích chi tiết: O(log(min(lengthX, lengthY)))
- * Ta xét 2 mảng X (bên trên) và Y (bên dưới). Tìm điểm partition X (với length x < length y) thỏa mãn maxLeft <= mỉnight
+ * Ta xét 2 mảng X (bên trên) và Y (bên dưới). Tìm điểm partition X (với length x < length y) thỏa mãn maxLeft <= minRight
  *
  * + partition(x or y) là cách chia sao cho nửa bên trái có partirion(x or y) phần tử. VD partitionX = 2 tức chia bên trái 2 phần tử.
  * --> partitionX [0, lengthX] && partitionY ... hay có lengthX + 1 cách chia mảng X
  *
  * + Ý tưởng là khi combine 2 mảng lại thành 1 mảng sắp xếp thì median là điểm chính giữa (hoặc average 2 điểm ở giữa) --> ta chia
  * thành 2 phần là partLeft và partRight với partLeft.length >= partRight.length (giống bài findRunningMedian với 2 PriorityQueue: luôn
- * ưu tiên maxHeap hơn) --> nếu size của partLeft là (x + y + 1) / 2  <cộng 1 để chẵn hay lẻ thì left luôn >= right)
+ * ưu tiên maxHeap hơn) --> nên size của partLeft là (x + y + 1) / 2  <cộng 1 để chẵn hay lẻ thì left luôn >= right)
  *
  * + Tại sao lengthY cần >= lengthX: vì biểu thức partitionY cần thế, nếu không partitionY có thể âm
  *
