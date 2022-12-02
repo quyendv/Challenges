@@ -35,7 +35,8 @@ public class Coin_Changing_Minimum_Number_Of_Coins {
                 // else: can't get: bằng hàng trước, mà hàng trước chính là ô hiện tại nên k đổi (k cần xét)
             }
         }
-        return dp[total];
+        // return dp[total];
+        return dp[total] == Integer.MAX_VALUE - 1 ? -1 : dp[total]; // -1 nếu k thể tráo đổi
     }
 
     public static int minimumCoinUpdate(int total, int[] coins) {
@@ -51,34 +52,6 @@ public class Coin_Changing_Minimum_Number_Of_Coins {
         return dp[total];
     }
 
-    /**
-     * Bài toán tìm số lượng xu tối thiểu để tạo ra 1 giá trị Value, nếu không return -1. (Gần giống bài trên nhưng bài trên là quy đổi,
-     * tức luôn có kết quả quy đổi, bài này có thể k). VD: value: 15, coins = {4}
-     * Solution: https://www.geeksforgeeks.org/find-minimum-number-of-coins-that-make-a-change/
-     *
-     * If V == 0, then 0 coins required.
-     * If V > 0     (V < 0 thì nhỏ hơn mọi coins[i] luôn rồi)
-     *    minCoins(coins[0..m-1], V) = min {1 + minCoins(V-coin[i])}
-     *                                where i varies from 0 to m-1
-     *                                and coin[i] <= V
-     */
-
-    public static int findMinNumberOfCoinsThatMakeAGivenValue(int value, int[] coins) {
-        int[] table = new int[value + 1];
-        table[0] = 0;
-        for (int i = 1; i < value + 1; i++) table[i] = Integer.MAX_VALUE;
-
-        for (int i = 1; i <= value; i++) {
-            for (int j = 0; j < coins.length; j++) {
-                if (coins[j] <= i) {
-                    int sub_res = table[i - coins[j]];
-                    if (sub_res != Integer.MAX_VALUE && sub_res + 1 < table[i]) table[i] = sub_res + 1;
-                }
-            }
-        }
-        return table[value] == Integer.MAX_VALUE ? -1 : table[value];
-    }
-
     public static void main(String[] args) {
         int[] coins = {1, 2, 3, 5};
         int total = 10;
@@ -87,7 +60,6 @@ public class Coin_Changing_Minimum_Number_Of_Coins {
         System.out.println(minimumCoin(total, coins));  // 3 -> 5 5 1
         total = 7;
         System.out.println(minimumCoin(total, coins));  // 2 -> 2 5
-
-        System.out.println(findMinNumberOfCoinsThatMakeAGivenValue(15, new int[]{4}));
+        System.out.println(minimumCoin(7, new int[]{4}));
     }
 }

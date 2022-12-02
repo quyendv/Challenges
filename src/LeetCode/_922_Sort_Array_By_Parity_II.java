@@ -1,4 +1,5 @@
-package LeetCode;/*
+package LeetCode;
+/*
     https://leetcode.com/problems/sort-array-by-parity-ii/
     sắp xếp mảng để phần tử chẵn ở index chẵn, lẻ ở index lẻ
     -> two pointer

@@ -2,9 +2,7 @@
 
 package LeetCode.SymbolTable_DSA;
 
-import java.util.LinkedList;
-import java.util.NoSuchElementException;
-import java.util.Queue;
+import java.util.*;
 
 /*
  * Cây tìm kiếm nhị phân (BST) là một cấu trúc dữ liệu cây nhị phân dựa trên nút có các thuộc tính sau:
@@ -195,7 +193,7 @@ public class BST<Key extends Comparable<Key>, Value> {
      * Luôn check leftSize vs rank. Mục tiêu: tìm Node có leftSize == rank
      * + leftSize == rank -> có rank Node nhỏ hơn x từ 0 -> rank - 1 => x nhỏ thứ rank.
      * + leftSize > rank  -> gọi hàm đến bên trái để leftSize giảm dần đến rank
-     * + leftSize < rank  -> nhỏ hơn thì lại gọi hàm bên phải (x.right, leftSize - rank - 1 <-> vì có leftSize + 1 số nhỏ hơn
+     * + leftSize < rank  -> nhỏ hơn thì lại gọi hàm bên phải (x.right, rank - leftSize - 1 <-> vì có leftSize + 1 số nhỏ hơn
      * Node thứ rank rồi)) để kiếm thêm Node nhỏ hơn Node thứ rank và > Node hiện tại. VD cần tìm số nhỏ thứ 9 (tức phải có 9 số
      * nhỏ hơn nó từ 0 đến 8. Node hiện tại có leftSize = 6 < rank => cần tìm thêm 3 Node nhỏ hơn nữa (bên phải))
      */
